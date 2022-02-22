@@ -2,13 +2,15 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <title>Your App</title>
+	<meta charset="utf-8" />
+	<title>Your App</title>
 </head>
 
 <body>
-  <h1>你好</h1>
-  <div id="root"></div>
+	<h1>你好</h1>
+	<div id="root">
+		<h2>请等候...</h2>
+	</div>
 </body>
 <!-- 直接引用官方提供的hwh5-cloudonline.js，也可根据自己需要新建一个本地文件来引用-->
 <script src="https://open-doc.welink.huaweicloud.com/docs/jsapi/2.0.9/hwh5-cloudonline.js"></script>
@@ -17,15 +19,27 @@
 <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
 <script>window.vConsole = new window.VConsole();</script>
 <script>
-  console.log('Start');
-  HWH5.getAuthCode().then(data => {
-    console.log('获取成功', data);
-    alert('获取成功 Code:' + data.code);
-    
-  }).catch(error => {
-    console.log('获取异常', error);
-    alert('获取遗产/n' + JSON.stringify(error));
-  });
+	console.log('Start');
+	HWH5.getAuthCode().then(data => {
+		console.log('获取成功', data);
+		alert('获取成功 Code:' + data.code);
+		loadXMLDoc(data.code)
+	}).catch(error => {
+		console.log('获取异常', error);
+		alert('获取遗产/n' + JSON.stringify(error));
+	});
+
+	function loadXMLDoc(code) {
+		var xmlhttp;
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById("root").innerHTML = xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("GET", "/get_user_detail" + code, true);
+		xmlhttp.send();
+	}
 </script>
 
 </html>
