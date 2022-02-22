@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Your App</title>
+</head>
+
+<body>
+  <h1>你好</h1>
+  <div id="root"></div>
+</body>
+<!-- 直接引用官方提供的hwh5-cloudonline.js，也可根据自己需要新建一个本地文件来引用-->
+<script src="https://open-doc.welink.huaweicloud.com/docs/jsapi/2.0.9/hwh5-cloudonline.js"></script>
+
+<!-- 引入Vconsole用于调试，生产环境时请去掉 -->
+<script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+<script>window.vConsole = new window.VConsole();</script>
+<script>
+  console.log('Start');
+  HWH5.getAuthCode().then(data => {
+    console.log('获取成功', data);
+    alert('获取成功 Code:' + data.code);
+    
+  }).catch(error => {
+    console.log('获取异常', error);
+    alert('获取遗产/n' + JSON.stringify(error));
+  });
+</script>
+
+</html>

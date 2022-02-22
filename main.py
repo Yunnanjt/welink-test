@@ -1,11 +1,15 @@
 from welink.api import (
     AuthV2TicketsRequest, AuthV2UseridRequest, ContactV2UserDetailRequest
 )
-from flask import Flask, g, request
+from flask import Flask, g, request, current_app
 
 app = Flask(__name__)
 access_token = ""
 
+
+@app.route("/")
+def index():
+    return current_app.send_static_file('index.html')
 
 @app.before_first_request
 def activate_job():
