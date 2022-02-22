@@ -1,9 +1,5 @@
 # welink-test
-企业将已有系统的H5页面接入在WeLink客户端中打开，系统可以自动获得正在访问用户的身份信息，而无需用户再次输入户密码。要想在WeLink中使用轻应用，必须进入We开放平台，创建一个应用，并通过"H5类型"的方式，发布该应用，详见下文说明。
-此功能用于WeLink客户端内打开的H5类型应用，应用获取到当前用户身份。
-**H5轻应用免登流程**
-![](https://cdn.nlark.com/yuque/0/2022/png/23158952/1645529885867-a16e0007-2dab-4f18-b1ea-54a624c02da0.png#clientId=u3b70d4ad-8221-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=uc467b9d3&margin=%5Bobject%20Object%5D&originHeight=471&originWidth=865&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf8e8b0d4-7863-40e2-b669-1b34806bcd5&title=)
-**H5轻应用接入步骤**
+企业将已有系统的H5页面接入在WeLink客户端中打开，系统可以自动获得正在访问用户的身份信息，而无需用户再次输入户密码。要想在WeLink中使用轻应用，必须进入We开放平台，创建一个应用，并通过"H5类型"的方式，发布该应用，详见下文说明。<br />此功能用于WeLink客户端内打开的H5类型应用，应用获取到当前用户身份。<br />**H5轻应用免登流程**<br />![](https://cdn.nlark.com/yuque/0/2022/png/23158952/1645529885867-a16e0007-2dab-4f18-b1ea-54a624c02da0.png#clientId=u3b70d4ad-8221-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=uc467b9d3&margin=%5Bobject%20Object%5D&originHeight=471&originWidth=865&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf8e8b0d4-7863-40e2-b669-1b34806bcd5&title=)<br />**H5轻应用接入步骤**
 
 | **步骤** | **描述** |
 | --- | --- |
@@ -16,13 +12,9 @@
 | 7 | 后台获取用户详细信息 |
 
 ## 第一步、获取client_id及client_secret
-进入“应用开发—>第三方企业应用—>轻应用”列表页上，[创建轻应用](https://open.welink.huaweicloud.com/docs/#/990hh0/whokyc/cqz3qu)。应用创建后，切换到“应用信息”页签下，查看该应用的client_id和client_secret。
-![](https://cdn.nlark.com/yuque/0/2022/png/23158952/1645529886079-829bdcb8-6377-4019-a622-536bb4fe2092.png#clientId=u3b70d4ad-8221-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u2d19dfdc&margin=%5Bobject%20Object%5D&originHeight=353&originWidth=1086&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u6e0518f0-eb8f-44a9-88b2-500bfd95b6e&title=)
+进入“应用开发—>第三方企业应用—>轻应用”列表页上，[创建轻应用](https://open.welink.huaweicloud.com/docs/#/990hh0/whokyc/cqz3qu)。应用创建后，切换到“应用信息”页签下，查看该应用的client_id和client_secret。<br />![](https://cdn.nlark.com/yuque/0/2022/png/23158952/1645529886079-829bdcb8-6377-4019-a622-536bb4fe2092.png#clientId=u3b70d4ad-8221-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u2d19dfdc&margin=%5Bobject%20Object%5D&originHeight=353&originWidth=1086&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u6e0518f0-eb8f-44a9-88b2-500bfd95b6e&title=)
 ## 第二步、获取H5网页地址，配置到轻应用
-1、在该应用中切到“版本管理”页签下
-2、在“开发版”下点击“设置首页”按钮，输入H5页面链接，然后点击“确定”按钮。
-![](https://cdn.nlark.com/yuque/0/2022/png/23158952/1645529885751-479a4b38-1142-48cd-acf7-0e8d555a5d7f.png#clientId=u3b70d4ad-8221-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=ua194852a&margin=%5Bobject%20Object%5D&originHeight=287&originWidth=1456&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ue5f4a19e-0742-4546-889f-fe27bf829e9&title=)  
-![](https://cdn.nlark.com/yuque/0/2022/png/23158952/1645529885742-9dbee4ec-02a7-431e-8550-92f2b1d0c551.png#clientId=u3b70d4ad-8221-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=uf58c5f02&margin=%5Bobject%20Object%5D&originHeight=271&originWidth=1468&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u8cd92d36-45a7-462e-9555-19fb35f92c0&title=)  
+1、在该应用中切到“版本管理”页签下<br />2、在“开发版”下点击“设置首页”按钮，输入H5页面链接，然后点击“确定”按钮。<br />![](https://cdn.nlark.com/yuque/0/2022/png/23158952/1645529885751-479a4b38-1142-48cd-acf7-0e8d555a5d7f.png#clientId=u3b70d4ad-8221-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=ua194852a&margin=%5Bobject%20Object%5D&originHeight=287&originWidth=1456&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ue5f4a19e-0742-4546-889f-fe27bf829e9&title=)  <br />![](https://cdn.nlark.com/yuque/0/2022/png/23158952/1645529885742-9dbee4ec-02a7-431e-8550-92f2b1d0c551.png#clientId=u3b70d4ad-8221-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=uf58c5f02&margin=%5Bobject%20Object%5D&originHeight=271&originWidth=1468&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u8cd92d36-45a7-462e-9555-19fb35f92c0&title=)  
 ## 第三步、引用线上的JSAPI
 引用线上的JSAPI，请参考[开发须知](https://open.welink.huaweicloud.com/docs/#/990hh0/whokyc/41ysvy)
 ## 第四步、获取免登授权码
