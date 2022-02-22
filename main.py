@@ -1,34 +1,49 @@
 from welink.api import (
     AuthV2TicketsRequest, AuthV2UseridRequest, ContactV2UserDetailRequest
 )
+from flask import Flask, g, request
+
+app = Flask(__name__)
+access_token = ""
+
+
+@app.before_first_request
+def activate_job():
+    # 获取access_token
+    req = AuthV2TicketsRequest(
+        "https://open.welink.huaweicloud.com/api/auth/v2/tickets"
+    )
+    req.client_id = "20220222140751309377494"
+    req.client_secret = "d57d2b28-3864-4672-a573-46993aff463c"
+    res = req.get_response()
+    global access_token
+    access_token = res.get('access_token')
+    print(access_token)
+    return dict(access_token=access_token)
+
+
+@app.route("/get_user_detail")
+def get_user_detail():
+    global access_token
+    # 获取userId
+    req = AuthV2UseridRequest(
+        "https://open.welink.huaweicloud.com/api/auth/v2/userid"
+    )
+    req.code = request.args.get('code', '')
+    res = req.get_response(access_token)
+    userId = res.get('userId')
+    tenantId = res.get('tenantId')
+    print(userId, tenantId)
+
+    # 获取用户详细信息
+    req = ContactV2UserDetailRequest(
+        "https://open.welink.huaweicloud.com/api/contact/v2/user/detail"
+    )
+    req.user_id = userId
+    userDetail = req.get_response(access_token)
+    print(userDetail)
+    return userDetail
+
 
 if __name__ == "__main__":
-    try:
-        # 获取access_token
-        req = AuthV2TicketsRequest(
-            "https://open.welink.huaweicloud.com/api/auth/v2/tickets"
-        )
-        req.client_id = "20220222140751309377494"
-        req.client_secret = "d57d2b28-3864-4672-a573-46993aff463c"
-        access_token = req.get_response().get('access_token')
-        print(access_token)
-
-        # 获取userId
-        req = AuthV2UseridRequest(
-            "https://open.welink.huaweicloud.com/api/auth/v2/userid"
-        )
-        req.code = "8ACCFEBFD8A104897C53E6AC30D81B4287B19062D36D56A221B82EF9AE571B70AAFAF1E6B639E97B148466B93E0B6A41"
-        userId = req.get_response(access_token).get('userId')
-        tenantId = req.get_response(access_token).get('tenantId')
-        print(userId, tenantId)
-
-        # 获取用户详细信息
-        req = ContactV2UserDetailRequest(
-            "https://open.welink.huaweicloud.com/api/contact/v2/user/detail"
-        )
-        req.user_id = userId
-        userDetail = req.get_response("bjd61227xe9b9-4dba-b4e2-2c20e49a4062")
-        print(userDetail)
-
-    except Exception as e:
-        print(e)
+    app.run()
