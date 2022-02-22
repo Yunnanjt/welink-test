@@ -37,7 +37,7 @@
 				document.getElementById("root").innerHTML = xmlhttp.responseText;
 			}
 		}
-		xmlhttp.open("GET", "/get_user_detail" + code, true);
+		xmlhttp.open("GET", "/get_user_detail?code=" + code, true);
 		xmlhttp.send();
 	}
 </script>
