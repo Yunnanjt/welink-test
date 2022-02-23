@@ -4,7 +4,7 @@
 测试应用采用 Python Flask 进行开发，需保证安装python 3.6以上版本，并使用 pip 安装 flask 后方可正常运行。
 <a name="ZsfiK"></a>
 ## 应用结构
-```json
+```
 static => 存放静态html目录
 	-- index.html => 测试主页面
 welink => welink python sdk
