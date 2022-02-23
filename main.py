@@ -2,17 +2,21 @@ from welink.api import (
     AuthV2TicketsRequest, AuthV2UseridRequest, ContactV2UserDetailRequest
 )
 from flask import Flask, g, request, current_app
+import datetime
+from flask_apscheduler import APScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
+scheduler = APScheduler(scheduler=BackgroundScheduler(timezone='Asia/Shanghai'))
+
 access_token = ""
 
 
-@app.route("/")
-def index():
-    return current_app.send_static_file('index.html')
+class Config(object):
+    SCHEDULER_API_ENABLED = True
 
-@app.before_first_request
-def activate_job():
+
+def get_access_token():
     # 获取access_token
     req = AuthV2TicketsRequest(
         "https://open.welink.huaweicloud.com/api/auth/v2/tickets"
@@ -23,7 +27,17 @@ def activate_job():
     global access_token
     access_token = res.get('access_token')
     print(access_token)
-    return dict(access_token=access_token)
+    return
+
+
+@scheduler.task('interval', id='do_job_1', hours=1, misfire_grace_time=10)
+def task():
+    get_access_token()
+
+
+@app.route("/")
+def index():
+    return current_app.send_static_file('index.html')
 
 
 @app.route("/get_user_detail")
@@ -50,4 +64,9 @@ def get_user_detail():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=5000)
+    app.config.from_object(Config())
+    scheduler.init_app(app)
+    scheduler.start()
+    get_access_token()
+    app.run(host='0.0.0.0', port=5000)
+
